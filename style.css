@@ -1,0 +1,241 @@
+/* ================================
+   RESET + VARIABLES
+==================================*/
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+:root{
+  --bg: #0b1322;
+  --text: #e8ecf1;
+  --accent: #4fffb0;
+  --accent-2: #38c28d;
+  --card: #121a2c;
+  --muted: #9aa6b2;
+
+  --maxw: 1100px;
+}
+
+/* ================================
+   BASE TIPOGRAFÍA
+==================================*/
+html, body { height: 100%; }
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Enlaces */
+a{ color: var(--accent); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* Botones */
+button{
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #031015;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+button:hover{ background: var(--accent-2); }
+
+/* Contenedor */
+.container{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ================================
+   HEADER + NAV
+==================================*/
+header{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.brand{
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.menu-toggle{
+  display: none; /* visible solo en móvil */
+  background: transparent;
+  color: var(--text);
+  font-size: 24px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #1d2840;
+  cursor: pointer;
+}
+
+nav{
+  display: flex;
+  gap: 16px;
+}
+
+nav a{
+  color: var(--text);
+  opacity: .9;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background .2s ease, opacity .2s ease;
+}
+nav a:hover{
+  background: #0e1b2e;
+  opacity: 1;
+}
+
+/* Móvil */
+@media (max-width: 720px){
+  header{
+    grid-template-columns: auto auto;
+  }
+  .menu-toggle{ display: inline-block; }
+  nav{
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    grid-column: 1 / -1;
+    background: #0e1b2e;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #1d2840;
+  }
+  nav.is-open{ display: flex; }
+}
+
+/* ================================
+   HERO
+==================================*/
+.hero{
+  padding: clamp(40px, 8vw, 80px) 16px;
+  text-align: center;
+  background:
+    radial-gradient(800px 300px at 50% -20%, #1a2750 0%, transparent 60%),
+    linear-gradient(180deg, transparent, rgba(255,255,255,.02));
+  border-radius: 18px;
+  margin: 8px 0 24px;
+}
+.hero h1{
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.hero p{
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.hero-actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+.hero a{ color: var(--accent); font-weight: 600; }
+
+/* ================================
+   SERVICIOS
+==================================*/
+.servicios{ padding: 12px 0 32px; }
+.servicios h2{
+  font-size: clamp(22px, 3vw, 32px);
+  margin-bottom: 6px;
+}
+.servicios .lead{
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.card{
+  background: var(--card);
+  border: 1px solid #1d2840;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+.card h3{ margin-bottom: 6px; }
+.card p{ color: var(--muted); }
+
+/* Responsive cards */
+@media (max-width: 720px){
+  .hero-actions{ flex-direction: column; }
+  .cards{ grid-template-columns: 1fr; }
+}
+@media (min-width: 721px) and (max-width: 1024px){
+  .cards{ grid-template-columns: repeat(2, 1fr); }
+}
+
+.card {
+  transform-origin: center bottom;
+}
+.card:hover{
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* ================================
+   FOOTER
+==================================*/
+footer{
+  color: var(--muted);
+  border-top: 1px solid #1d2840;
+  margin-top: 24px;
+  padding: 18px 0 40px;
+  text-align: center;
+}
+
+/*Trancisiones suaves*/
+
+.brand,nav a, .card,.hero, .hero-actions, button, .hero-actions a {
+    transition: transform .25s ease, opacity .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+/*estado hover mas util*/
+.hero-actions a:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+}
+
+/* Inicio oculto sutil */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  will-change: transform, opacity;
+}
+
+/* Cuando entra en viewport */
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* Respeta accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
