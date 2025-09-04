@@ -8,4 +8,4 @@ Landing responsive con hero, servicios en grid, menú móvil y animaciones revea
 - JavaScript (scroll suave, menú móvil, IntersectionObserver)
 
 ## Demo
-👉 [Ver la landing en GitHub Pages]([https://alexvbxdxd-tech.github.io/landing-intensivo/])
+👉 [Ver la landing en GitHub Pages](https://alexvbxdxd-tech.github.io/landing-intensivo/)
